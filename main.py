@@ -1,11 +1,16 @@
 from stats import word_count, char_count, dict_sort
+import sys
 
 def get_book_text(path):
     with open(path) as f:
         return f.read()
 
 def main():
-    book_path="books/frankenstein.txt"
+    try:
+        book_path=sys.argv[1]
+    except:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
     contents=get_book_text(book_path)
     num_words=word_count(contents)
     char_dict=char_count(contents)
